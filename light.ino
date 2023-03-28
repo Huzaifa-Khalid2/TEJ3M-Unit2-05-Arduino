@@ -1,17 +1,32 @@
-// C++ code
-//
+/*
+  Created by: Huzaifa Khalid
+  Created on: March 2023
+  
+  Moves the servo through 180° and then back again
+*/
 
-int pin5 = 5;
+
+#include <Servo.h>
+
+Servo servo;
 
 void setup()
 {
-  pinMode(pin5, OUTPUT);
+  servo.attach(2);
+  servo.write(0);
+  delay(1000);
 }
 
 void loop()
 {
-  digitalWrite(pin5, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(pin5, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
+  for (int angle = 0; angle < 180; angle++)
+  {
+    servo.write(angle);
+    delay(15);
+  }
+  for (int angle = 180; angle > 0; angle--)
+  {
+    servo.write(angle);
+    delay(15);
+  }
 }
